@@ -37,9 +37,9 @@ const anecdoteReducer = (state = anecdotes, action) => {
 const notificationReducer = (state = '', action) => {
   switch (action.type) {
     case 'VOTE':
-      return `You have voted on an anecdote!`
+      return `You have voted on '${action.data.anecdote}'!`
     case 'NEW ANECDOTE':
-      return `you have create a new anecdote!`
+      return `you have create '${action.data.anecdote}'`
     case 'RESET':
       return ''
     default:
@@ -47,9 +47,19 @@ const notificationReducer = (state = '', action) => {
   }
 }
 
+const filterReducer = (state = '', action) => {
+  switch (action.type) {
+    case 'SEARCH':
+      return action.data.searchTerm
+    default:
+      return state
+  }
+}
+
 const combinedReducers = combineReducers({
   anecdotes: anecdoteReducer,
-  notification: notificationReducer
+  notification: notificationReducer,
+  filter: filterReducer
 })
 
 const store = createStore(
@@ -66,11 +76,12 @@ const addAnecdote = anecdote => {
   }
 }
 
-const addVote = id => {
+const addVote = (id, anecdote) => {
   return {
     type: 'VOTE',
     data: {
-      id
+      id,
+      anecdote
     }
   }
 }
@@ -81,5 +92,14 @@ const resetNotification = () => {//I don't having component calling this in thei
   }
 }
 
+const searchInAnecdote = searchTerm => {
+  return {
+    type: 'SEARCH',
+    data: {
+      searchTerm
+    }
+  }
+}
+
 export default store
-export { addAnecdote, addVote, resetNotification }
+export { addAnecdote, addVote, resetNotification, searchInAnecdote }

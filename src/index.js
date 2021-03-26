@@ -14,6 +14,8 @@ import App from './App'
 -add redux-devtools-extension, done
 -move store creation in reducer's file, done
 -add another reducer for changing notification message on action, use combineReducer along with redux devtool, done
+-add yet another reducer to store search term, done
+-filter posts based on search term, implemented within the useSelector block, done
 */
 
 ReactDOM.render(
