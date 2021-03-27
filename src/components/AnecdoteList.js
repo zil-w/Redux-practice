@@ -20,7 +20,6 @@ const AnecdoteList = () => {
 
   const anecdotes = useSelector(state => {
     if (state.filter === '') {
-      console.log('stuff we are getting in anecdoteList', state.anecdotes)
       return state.anecdotes
     }
     else {
@@ -40,8 +39,9 @@ const AnecdoteList = () => {
 
   return (
     <>
-      {anecdotes.map(anecdote =>
-        <Anecdote content={anecdote.content} vote={anecdote.vote} handleVote={handleVote(anecdote.id, anecdote.content)} key={anecdote.id} />
+      {anecdotes.map(anecdote => {
+          return <Anecdote content={anecdote.content} vote={anecdote.votes} handleVote={handleVote(anecdote.id, anecdote.content)} key={anecdote.id} />
+        }
       )}
     </>
   )

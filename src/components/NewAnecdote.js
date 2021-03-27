@@ -9,7 +9,7 @@ const NewAnecdote = () => {
   const handleSubmission = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
-    const returnedAnecdote = await anecdoteService.postAnecdote({content, vote:0}) 
+    const returnedAnecdote = await anecdoteService.postAnecdote({content, votes:0}) 
 
     dispatch(addAnecdote(returnedAnecdote))
     event.target.anecdote.value = ''
