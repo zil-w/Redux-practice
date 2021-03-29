@@ -12,6 +12,11 @@ const postAnecdote = async (anecdote) => {
   return anecdoteRes.data
 }
 
-const anecdoteService = {getAnecdotes, postAnecdote}
+const likeAnecdote = async (anecdote) => {
+  const likedAnecdote = await axios.put(`${dBAddress}/${anecdote.id}`, { ...anecdote, votes: anecdote.votes + 1 })
+  return likedAnecdote.data
+}
+
+const anecdoteService = {getAnecdotes, postAnecdote, likeAnecdote}
 
 export default anecdoteService

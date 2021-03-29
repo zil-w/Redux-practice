@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux'
-import store from './components/reducer'
+import store from './components/store'
 import App from './App'
 
 /*
@@ -16,6 +16,11 @@ import App from './App'
 -add another reducer for changing notification message on action, use combineReducer along with redux devtool, done
 -add yet another reducer to store search term, done
 -filter posts based on search term, implemented within the useSelector block, done
+-make the app get anecdotes from the json server, need to implement a DB servicer, make async call in component's action handler instead of action creator, done
+-make the app create new anecdote into the json server, make call in component as well, done
+-add redux thunk and migrate the backend calls into the action creator, done
+-make the app update anecdote vote into the json server, done
+-make the notification action creator handle setting and resetting the notification message
 */
 
 ReactDOM.render(

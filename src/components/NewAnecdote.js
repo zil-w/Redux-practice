@@ -1,6 +1,5 @@
 import React from 'react'
-import { addAnecdote, resetNotification } from './reducer'
-import anecdoteService from '../utils/anecdoteService'
+import { addAnecdote, setNotification } from './reducer'
 import { useDispatch } from 'react-redux'
 
 const NewAnecdote = () => {
@@ -9,11 +8,9 @@ const NewAnecdote = () => {
   const handleSubmission = async (event) => {
     event.preventDefault()
     const content = event.target.anecdote.value
-    const returnedAnecdote = await anecdoteService.postAnecdote({content, votes:0}) 
-
-    dispatch(addAnecdote(returnedAnecdote))
+    dispatch(addAnecdote(content))
+    dispatch(setNotification(`you have create '${content}'`, 5))
     event.target.anecdote.value = ''
-    setTimeout(() => dispatch(resetNotification()), 5000)//is this really the best way to do this?
   }
 
   return (
