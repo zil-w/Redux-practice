@@ -7,7 +7,8 @@ import reducer from './reducer'
 const reducers = combineReducers({
     anecdotes:reducer.anecdoteReducer,
     notification: reducer.notificationReducer,
-    filter: reducer.filterReducer
+    filter: reducer.filterReducer,
+    notificationTimer: reducer.notificationTimerReducer
 })
 
 const store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))

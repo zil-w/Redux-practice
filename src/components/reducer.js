@@ -55,6 +55,17 @@ const filterReducer = (state = '', action) => {
   }
 }
 
+const notificationTimerReducer = (state = -1, action) => {
+  switch (action.type) {
+    case 'SET_TIMEOUTID':
+      return action.data.timeoutID
+    case 'RESET_TIMEOUTID':
+      return -1
+    default:
+      return state
+  }
+}
+
 const addAnecdote = content => {
   return async (dispatch) => {
     const postedAnecdote = await anecdoteService.postAnecdote({ content, votes: 0 })
@@ -79,7 +90,7 @@ const addVote = (anecdote) => {
   }
 }
 
-const setNotification = (message, showTimeSec) => {//I really don't think this is gonna work, wow this works, but is there a way we can make this look nicer?
+const setNotification = (message, showTimeSec) => {//I really don't think this is gonna work, wow this works, but is there a way we can make this look nicer? also is it okay for us to interrupt the timeout from AnecdoteList and NewAnecdote? is this an anti-pattern?
   return async (dispatch) => {
 
     dispatch({
@@ -89,11 +100,21 @@ const setNotification = (message, showTimeSec) => {//I really don't think this i
       }
     })
 
-    setTimeout(() => {
+    const timeoutID = setTimeout(() => {
       dispatch({//is this like a second method call?
         type: 'RESET'
       })
-    }, (showTimeSec * 1000));
+      dispatch({
+        type: 'RESET_TIMEOUTID'
+      })
+    }, (showTimeSec * 1000))
+
+    dispatch({
+      type: 'SET_TIMEOUTID',
+      data: {
+        timeoutID
+      }
+    })
   }
 }
 
@@ -119,7 +140,16 @@ const initiateAnecdotes = () => {
   }
 }
 
-const reducer = {anecdoteReducer, notificationReducer ,filterReducer}
+// const resetNotificationTimer = timeoutID => {
+//   return {
+//     type: 'RESET_TIMEOUTID',
+//     data: {
+//       timeoutID
+//     }
+//   }
+// }
+
+const reducer = {anecdoteReducer, notificationReducer ,filterReducer, notificationTimerReducer}
 
 export default reducer
 export { addAnecdote, addVote, setNotification, searchInAnecdote, initiateAnecdotes }

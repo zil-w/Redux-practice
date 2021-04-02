@@ -21,6 +21,11 @@ import App from './App'
 -add redux thunk and migrate the backend calls into the action creator, done
 -make the app update anecdote vote into the json server, done
 -make the notification action creator handle setting and resetting the notification message
+-01/04/2021
+-replace Notification's store access to connected component, done
+-replace SearchBar's store access to connected component, done
+-replace NewAnecdote's store access to connected component
+-make sure that the last notification lasts the specified time length and it doesn't get hidden due to previous notification's timer
 */
 
 ReactDOM.render(

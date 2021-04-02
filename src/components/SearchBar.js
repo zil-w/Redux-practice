@@ -1,12 +1,14 @@
 import React from 'react'
 import { searchInAnecdote } from './reducer'
-import {useDispatch} from 'react-redux'
+//import {useDispatch} from 'react-redux'
+import {connect} from 'react-redux'
 
-const SearchBar = () => {
-    const dispatch = useDispatch()
+const SearchBar = props => {
+    //const dispatch = useDispatch()
 
     const searchHandler = (event) => {
-        dispatch(searchInAnecdote(event.target.value))
+        //dispatch(searchInAnecdote(event.target.value))
+        props.processSearchTerm(event.target.value)
     }
 
     return (
@@ -16,4 +18,17 @@ const SearchBar = () => {
     )
 }
 
-export default SearchBar
+//first way to  use mapDispatchToProps
+//const mapDispatchToProps = {processSearchTerm: searchInAnecdote}
+
+//second way to use mapDispatchToProps
+const mapDispatchToProps = dispatch => {
+    return {
+        processSearchTerm: value => {dispatch(searchInAnecdote(value))}
+    }
+}
+
+
+const ConnectedSearchBar = connect(null, mapDispatchToProps)(SearchBar)//mapDispatchToProps must be the second argument
+
+export default ConnectedSearchBar

@@ -1,9 +1,10 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
+import { connect } from 'react-redux' //connect is actually from react-redux
 
 //the styling 'style' is based from https://fullstackopen.com/en/part6/many_reducers
-const Notification = () => {
-  const notifyingMsg = useSelector(state => state.notification)
+const Notification = props => {
+  //const notifyingMsg = useSelector(state => state.notification)
+  const notifyingMsg = props.notification
 
   const style = {
     border: 'solid',
@@ -23,4 +24,12 @@ const Notification = () => {
   )
 }
 
-export default Notification
+const mapStateToProps = (state) => {
+  return {
+    notification: state.notification
+  }
+}
+
+const ConnectedNotification = connect(mapStateToProps)(Notification)
+
+export default ConnectedNotification
