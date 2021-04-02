@@ -17,6 +17,6 @@ const likeAnecdote = async (anecdote) => {
   return likedAnecdote.data
 }
 
-const anecdoteService = {getAnecdotes, postAnecdote, likeAnecdote}
+const anecdoteService = { getAnecdotes, postAnecdote, likeAnecdote }
 
 export default anecdoteService

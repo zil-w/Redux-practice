@@ -3,7 +3,6 @@ import { connect } from 'react-redux' //connect is actually from react-redux
 
 //the styling 'style' is based from https://fullstackopen.com/en/part6/many_reducers
 const Notification = props => {
-  //const notifyingMsg = useSelector(state => state.notification)
   const notifyingMsg = props.notification
 
   const style = {

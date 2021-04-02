@@ -24,8 +24,8 @@ import App from './App'
 -01/04/2021
 -replace Notification's store access to connected component, done
 -replace SearchBar's store access to connected component, done
--replace NewAnecdote's store access to connected component
--make sure that the last notification lasts the specified time length and it doesn't get hidden due to previous notification's timer
+-replace NewAnecdote's store access to connected component, done
+-make sure that the last notification lasts the specified time length and it doesn't get hidden due to previous notification's timer, done
 */
 
 ReactDOM.render(

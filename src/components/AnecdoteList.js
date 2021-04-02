@@ -27,17 +27,14 @@ const AnecdoteList = () => {
     }
   })
 
-  const timerID = useSelector(state => {//this is extremely likely to be by value, wait, apparently arrays and objs are passed by reference in JS, nice
+  const timerID = useSelector(state => {
     return state.notificationTimer
   })
 
   const handleVote = (anecdote) => { //add vote to backend and display a vote message
     return (
       () => {
-        // const timerID = useSelector(state => { //this is an issue, timerID will be access at the component's birth, hmm, if you somehow get a reference, we can get the timerID when we initialize the component
-        //   return state.notificationTimer
-        // })
-        if (timerID !== -1) {
+        if (timerID !== -1) {//undo existing timer for erasing notification
           clearTimeout(timerID)
         }
         dispatch(addVote(anecdote))

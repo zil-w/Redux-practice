@@ -7,33 +7,20 @@ const anecdoteReducer = (state = [], action) => {
       newAnecdotes = state.map(anecdote => (anecdote.id === action.data.votedAnecdote.id) ? action.data.votedAnecdote : anecdote)
       newAnecdotes.sort((first, second) => second.votes - first.votes)
       return newAnecdotes
-    
+
     case 'NEW_ANECDOTE':
       newAnecdotes = state.concat(action.data.postedAnecdote)
       return newAnecdotes
-    
+
     case 'INIT_ANECDOTE':
       newAnecdotes = action.data.anecdotes
       newAnecdotes.sort((first, second) => second.votes - first.votes)
       return newAnecdotes
-    
+
     default:
       return state
   }
 }
-
-// const notificationReducer = (state = '', action) => { //with this implementation we asychronize the message display to its respective action
-//   switch (action.type) {
-//     case 'VOTE':
-//       return `You have voted on '${action.data.votedAnecdote.content}'!`
-//     case 'NEW_ANECDOTE':
-//       return `you have create '${action.data.postedAnecdote.content}'`
-//     case 'RESET':
-//       return ''
-//     default:
-//       return state
-//   }
-// }
 
 const notificationReducer = (state = '', action) => {
   switch (action.type) {
@@ -90,7 +77,7 @@ const addVote = (anecdote) => {
   }
 }
 
-const setNotification = (message, showTimeSec) => {//I really don't think this is gonna work, wow this works, but is there a way we can make this look nicer? also is it okay for us to interrupt the timeout from AnecdoteList and NewAnecdote? is this an anti-pattern?
+const setNotification = (message, showTimeSec) => {//I really don't think this is gonna work, wow this works, but is there a way we can make this look nicer? accessing Redux store inside an action creator is argued to be an anti-pattern
   return async (dispatch) => {
 
     dispatch({
@@ -140,16 +127,7 @@ const initiateAnecdotes = () => {
   }
 }
 
-// const resetNotificationTimer = timeoutID => {
-//   return {
-//     type: 'RESET_TIMEOUTID',
-//     data: {
-//       timeoutID
-//     }
-//   }
-// }
-
-const reducer = {anecdoteReducer, notificationReducer ,filterReducer, notificationTimerReducer}
+const reducer = { anecdoteReducer, notificationReducer, filterReducer, notificationTimerReducer }
 
 export default reducer
 export { addAnecdote, addVote, setNotification, searchInAnecdote, initiateAnecdotes }

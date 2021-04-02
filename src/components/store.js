@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import reducer from './reducer'
 
 const reducers = combineReducers({
-    anecdotes:reducer.anecdoteReducer,
+    anecdotes: reducer.anecdoteReducer,
     notification: reducer.notificationReducer,
     filter: reducer.filterReducer,
     notificationTimer: reducer.notificationTimerReducer

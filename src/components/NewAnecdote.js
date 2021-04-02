@@ -3,17 +3,16 @@ import { addAnecdote, setNotification } from './reducer'
 import { connect } from 'react-redux'
 
 const NewAnecdote = props => {
-  //const dispatch = useDispatch()
 
   const handleSubmission = (event) => {
     event.preventDefault()
-    const timerID = props.notificationTimer
+
+    const timerID = props.notificationTimer//undo existing timer to erase notification
     if (timerID !== -1) {
       clearTimeout(timerID)
     }
+
     const content = event.target.anecdote.value
-    // dispatch(addAnecdote(content))
-    // dispatch(setNotification(`you have create '${content}'`, 5))
     props.addAnecdote(content)
     props.setNotification(`you have create '${content}'`, 5)
     event.target.anecdote.value = ''
